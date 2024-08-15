@@ -1,5 +1,6 @@
 // var reg = document.getElementById("reg")
 // var log = document.getElementById("log")
+var using = document.getElementById("user-name")
 
 function getUser(){
     var users = localStorage.getItem("users");
@@ -18,7 +19,8 @@ function register(){
     var password = document.getElementById("password");
     var users =  getUser();
     var flag = true
-
+    
+  
     if(name.value == "" || email.value == "" || password.value == ""){
         flag = true
     }
@@ -30,15 +32,15 @@ function register(){
     }
     
     users.push(user);
-    
     localStorage.setItem("users", JSON.stringify(users));
-
     window.location.href = "canban.html"
+
 
 }
 name.value = "";
 email.value = "";
 password.value = "";
+
 
 }
 function login(){
@@ -53,10 +55,10 @@ function login(){
         }
     }
     if(isValid){ 
-        console.log("user login successfully") 
+        alert("user login successfully") 
         window.location.href = "canban.html"
     }else{
-        console.log("email or password is invalid")
+        alert("email or password is invalid")
     }
 }
 
@@ -65,7 +67,7 @@ var todo = document.getElementById("todo")
 var inp = document.getElementById("inprogress")
 var don = document.getElementById("done")
 var modal = document.getElementById("staticBackdrop") 
-var head = modal.getElementsByTagName("h1")
+var head = document.getElementsByTagName("h1")
 var title = document.getElementById("title")
 var des = document.getElementById("des")
 var cardd = document.getElementById("card");
@@ -168,7 +170,7 @@ function allowDrop(ev) {
   
   function drop(ev) {
       ev.preventDefault();
-      
+
       var landing = ev.target.id;
       if(landing == "todo" || landing == "inprogress" || landing == "done"){
           ev.target.appendChild(passenger);
@@ -192,3 +194,11 @@ function allowDrop(ev) {
     //         reg.style.display = "block";
     //         log.style.display = "none";
     //   }  
+
+
+    var arr = getUser()
+    var len = getUser().length-1
+    
+    var uName = arr[len].name;
+
+    using.innerHTML = uName;
